@@ -7,6 +7,47 @@ composer require cym000/swoole-process-mysql-queue
 ## 说明
 主要用于小型项目，平常无聊写写而已，如果用于线上项目还请多加测试，里面借助了easyswoole/mysqli-pool, 如跟你项目有冲突的话，可以自行修改；使用swoole_process做消息队列，可以多个消费process，在本实例swoole_process中可替换成常见的mysql-orm，但在swoole_server 中有协程出现，需使用协程版的mysql；也可以使用在其他swoole衍生框架中；
 
+## 表结构
+```
+--
+-- 表的结构 `queue_jobs`
+--
+
+CREATE TABLE `queue_jobs` (
+  `id` bigint(20) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `queue` varchar(255) NOT NULL,
+  `job_data` longtext NOT NULL,
+  `attempts` tinyint(3) UNSIGNED NOT NULL,
+  `reserved` tinyint(3) UNSIGNED NOT NULL,
+  `reserve_time` int(10) UNSIGNED DEFAULT NULL,
+  `available_time` int(10) UNSIGNED NOT NULL,
+  `create_time` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 转储表的索引
+--
+
+--
+-- 表的索引 `queue_jobs`
+--
+ALTER TABLE `queue_jobs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- 在导出的表使用AUTO_INCREMENT
+--
+
+--
+-- 使用表AUTO_INCREMENT `queue_jobs`
+--
+ALTER TABLE `queue_jobs`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+```
+
 ## 示例代码
 ```
 require 'vendor/autoload.php';
