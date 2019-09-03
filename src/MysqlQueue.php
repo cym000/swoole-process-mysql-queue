@@ -21,6 +21,11 @@ class MysqlQueue
         echo "MysqlQueue \n";
     }
 
+    public function setTable(string $talbe)
+    {
+        $this->table =  $table;
+    }
+
     /*
      * 创建swoole 消息队列子进程， 根据config 创建多个消息队列进程消费
      * @param swoole_server

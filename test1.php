@@ -35,6 +35,7 @@ $queueConfig = [
     ]
 ];
 $mysqlQueue = \MysqlQueue\MysqlQueue::getInstance($queueConfig);
+$mysqlQueue->setTable('queue_jobs'); // 可以修改 表名，不然默认就是 queue_jobs
 $mysqlQueue->setSwooleProcessQueue($http);
 
 $http->on("start", function ($server) {
