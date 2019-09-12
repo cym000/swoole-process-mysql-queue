@@ -1,7 +1,8 @@
 # swoole_server 中使用MySQL 消息队列
 ## 安装
 ```
-composer require cym000/swoole-process-mysql-queue
+git https://github.com/cym000/swoole-process-mysql-queue.git
+composer update
 ```
 
 ## 说明
